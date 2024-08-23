@@ -23,12 +23,14 @@ userRouter.post('/signup',async(c)=>{
     try{
         const user=await prisma.user.create({
             data: {
+                name:body.name,
                 email:body.email,
                 password:body.password
             }
         });
         const jwt=await sign({id:user.id},c.env.JWT_SECRET)
-        return c.json({jwt})
+        const str="Bearer "+jwt
+        return c.json({str})
     }catch(error){
         c.status(403)
         return c.json({msg:"User already exists"})
@@ -55,5 +57,6 @@ userRouter.post('/signin',async(c)=>{
         return c.json({error:"User not found!"})
     }
     const jwt=await sign({id:user.id},c.env.JWT_SECRET);
-    return c.json({jwt})
+    const str="Bearer "+jwt;
+    return c.json({str});
 })

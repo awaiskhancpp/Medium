@@ -2,7 +2,7 @@ name = "backend"
 compatibility_date = "2024-08-19"
 
 [vars]
-DATABASE_URL=""
+DATABASE_URL=""//prisma accelerate url
 DIRECT_URL=""
 JWT_SECRET=""
 # MY_VAR = "my-variable"
